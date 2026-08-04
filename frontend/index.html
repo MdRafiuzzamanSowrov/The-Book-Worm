@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - The Book Worm</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <h1>Welcome back</h1>
+      <p class="subtitle">Log in to browse and order books.</p>
+
+      <div id="error-message" class="error-message"></div>
+
+      <form id="login-form">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required autocomplete="username">
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required autocomplete="current-password">
+
+        <button type="submit" class="primary">Log In</button>
+      </form>
+
+      <p class="switch-link">New here? <a href="register.html">Create an account</a></p>
+    </div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

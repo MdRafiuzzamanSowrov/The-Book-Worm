@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Orders - The Book Worm</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <h1>🐛 The Book Worm</h1>
+    <div class="nav-links">
+      <a href="books.html">Books</a>
+      <a href="orders.html">My Orders</a>
+      <span id="welcome-user"></span>
+      <button id="logout-btn" class="linklike">Log Out</button>
+    </div>
+  </nav>
+
+  <main>
+    <h2>My Orders</h2>
+    <div id="error-message" class="error-message"></div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Book</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="orders-body"></tbody>
+    </table>
+  </main>
+
+  <script src="js/utils.js"></script>
+  <script src="js/orders.js"></script>
+</body>
+</html>

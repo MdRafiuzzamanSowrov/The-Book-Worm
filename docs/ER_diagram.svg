@@ -1,0 +1,56 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect width="900" height="420" fill="#faf6ee"/>
+
+  <!-- USERS entity -->
+  <g>
+    <rect x="40" y="40" width="220" height="150" rx="8" fill="#ffffff" stroke="#2f4739" stroke-width="2"/>
+    <rect x="40" y="40" width="220" height="34" rx="8" fill="#2f4739"/>
+    <text x="150" y="63" fill="white" font-size="16" font-weight="bold" text-anchor="middle">USERS</text>
+    <text x="55" y="95" font-size="13">PK  id (INT)</text>
+    <text x="55" y="117" font-size="13">    username (VARCHAR) UNIQUE</text>
+    <text x="55" y="139" font-size="13">    email (VARCHAR) UNIQUE</text>
+    <text x="55" y="161" font-size="13">    password_hash (VARCHAR)</text>
+  </g>
+
+  <!-- ORDERS entity (relationship table) -->
+  <g>
+    <rect x="340" y="140" width="240" height="172" rx="8" fill="#ffffff" stroke="#c9a227" stroke-width="2"/>
+    <rect x="340" y="140" width="240" height="34" rx="8" fill="#c9a227"/>
+    <text x="460" y="163" fill="#2b2b28" font-size="16" font-weight="bold" text-anchor="middle">ORDERS</text>
+    <text x="355" y="195" font-size="13">PK  id (INT)</text>
+    <text x="355" y="217" font-size="13">FK  user_id (INT)</text>
+    <text x="355" y="239" font-size="13">FK  book_id (INT)</text>
+    <text x="355" y="261" font-size="13">    quantity (INT)</text>
+    <text x="355" y="283" font-size="13">    total_price (DECIMAL)</text>
+    <text x="355" y="305" font-size="13">    order_date (TIMESTAMP)</text>
+  </g>
+
+  <!-- BOOKS entity -->
+  <g>
+    <rect x="660" y="40" width="220" height="172" rx="8" fill="#ffffff" stroke="#2f4739" stroke-width="2"/>
+    <rect x="660" y="40" width="220" height="34" rx="8" fill="#2f4739"/>
+    <text x="770" y="63" fill="white" font-size="16" font-weight="bold" text-anchor="middle">BOOKS</text>
+    <text x="675" y="95" font-size="13">PK  id (INT)</text>
+    <text x="675" y="117" font-size="13">    title (VARCHAR)</text>
+    <text x="675" y="139" font-size="13">    author (VARCHAR)</text>
+    <text x="675" y="161" font-size="13">    price (DECIMAL)</text>
+    <text x="675" y="183" font-size="13">    stock (INT)</text>
+  </g>
+
+  <!-- Relationship lines -->
+  <line x1="260" y1="150" x2="340" y2="200" stroke="#2b2b28" stroke-width="2"/>
+  <line x1="660" y1="150" x2="580" y2="200" stroke="#2b2b28" stroke-width="2"/>
+
+  <!-- Cardinality labels -->
+  <text x="270" y="145" font-size="13" fill="#2b2b28">1</text>
+  <text x="325" y="195" font-size="13" fill="#2b2b28">N</text>
+  <text x="645" y="145" font-size="13" fill="#2b2b28">1</text>
+  <text x="590" y="195" font-size="13" fill="#2b2b28">N</text>
+
+  <text x="450" y="370" font-size="14" text-anchor="middle" fill="#2b2b28">
+    One USER places many ORDERS  •  One BOOK appears in many ORDERS
+  </text>
+  <text x="450" y="395" font-size="13" text-anchor="middle" fill="#6b6a63">
+    (orders.user_id → users.id, orders.book_id → books.id)
+  </text>
+</svg>
