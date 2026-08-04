@@ -1,10 +1,19 @@
-# Online Bookstore — CSE 3200 Final Project
+# The Book Worm — CSE3200 (Web Programming Sessional) Final Project
 
 A simple full-stack bookstore: register/login, browse books, place orders, view/edit/cancel your orders.
 
 **Stack:** HTML/CSS/vanilla JS (front end) · Node.js + Express (back end) · MySQL (database) · bcrypt (password hashing) · express-session (login cookie)
 
 ---
+<img width="1920" height="921" alt="image" src="https://github.com/user-attachments/assets/b90877e8-4ade-4d73-a41b-89b33e27d35a" />
+
+<img width="1920" height="927" alt="image" src="https://github.com/user-attachments/assets/627fd7ed-22d0-464c-8689-053c799f8139" />
+
+<img width="1912" height="924" alt="image" src="https://github.com/user-attachments/assets/e9d98c9d-e926-48e3-b886-de136b104641" />
+
+<img width="1920" height="924" alt="image" src="https://github.com/user-attachments/assets/c9416e17-47ab-4f1e-8b36-0396f521c248" />
+
+
 
 ## 1. Project structure
 
@@ -92,33 +101,12 @@ See `docs/ER_diagram.svg`.
 - **books** (1) → (many) **orders** — one book can appear in many orders
 - `orders` is the linking table holding both foreign keys (`user_id`, `book_id`)
 
-## 5. Likely viva questions (so you can rehearse answers)
 
-**Q: How does the server know I'm logged in on a different page?**
-A: On login, `req.session.userId` is set. Express-session signs a session ID and sends it to the browser as an `httpOnly` cookie (`connect.sid`). The browser auto-sends that cookie on every request (`credentials: 'include'` in `apiRequest`), so `authMiddleware.js` can check `req.session.userId` on each protected route.
 
-**Q: Where is localStorage used, and why not put everything there?**
-A: `localStorage` stores the username so the page can greet the user without an extra request. It is *not* used for the session/auth token, because localStorage is readable by any JS on the page (XSS risk) — the actual login state lives in the `httpOnly` session cookie, which JS cannot read.
 
-**Q: How do you prevent SQL injection?**
-A: Every query uses `?` placeholders and passes user input as a parameter array to `mysql2`, e.g. `pool.query('SELECT * FROM users WHERE username = ?', [username])`. The library escapes the value — user input is never concatenated directly into the SQL string.
 
-**Q: Why bcrypt instead of storing the password directly?**
-A: bcrypt hashes the password with a random salt (`SALT_ROUNDS = 10`), so even if the database leaks, an attacker cannot read the original passwords. On login, `bcrypt.compare()` re-hashes the entered password and compares hashes — the plain password is never stored or compared directly.
 
-**Q: Explain the ER diagram relationships.**
-A: `users` and `books` are independent entities. `orders` is the join/relationship entity: each order row has one `user_id` and one `book_id` (both foreign keys), so one user can have many orders and one book can appear in many orders — two 1:N relationships meeting at `orders`.
+   
+## Contact
 
-**Q: Walk me through what happens when I click "Buy".**
-A: Front end (`books.js`) reads the quantity input, calls `apiRequest('/api/orders', 'POST', {book_id, quantity})`. Backend (`routes/orders.js`) checks login via middleware, looks up the book's price/stock, rejects if not enough stock, inserts a row into `orders`, and decrements `books.stock`. Response goes back to the front end, which shows a success message and reloads the book list.
-
-**Q: How is error handling done?**
-A: Backend: every route handler wraps its database calls in `try/catch`; on failure it logs the real error to the server console but sends the user a safe, readable message with an appropriate HTTP status code (400/401/404/500). Frontend: `apiRequest()` throws on a non-OK response, and every page's calling code wraps that in `try/catch` to display the message via `showMessage()`.
-
-**Q: Why is there a `middleware` folder?**
-A: `authMiddleware.js`'s `requireLogin` function runs before the actual route handler on every protected route. It's written once and reused everywhere (`router.get('/', requireLogin, ...)`), instead of repeating the same login check inside every handler — that's the DRY principle applied on the backend.
-
-## 6. Notes for the team
-
-- Remember: **20 git pushes** required in the front-end phase, **10** in the back-end phase, from all members — commit small and often rather than one giant push.
-- Presentation is 4–6 minutes, live demo of CRUD, no code shown, mention who did what and what problems you hit.
+Created by Md.Rafiuzzaman Sowrov — feel free to reach out via email at rafiuzzamansourov@gmail.com or connect on Linkedin with https://www.linkedin.com/in/rafiuzzaman-sourov-715b78279/ or visit my portfolio: https://mdrafiuzzamansourov.lovable.app/
